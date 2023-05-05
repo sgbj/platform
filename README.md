@@ -1,5 +1,9 @@
 # Platform
 
+![image](https://user-images.githubusercontent.com/5178445/236360710-8354b057-1148-4ea7-ad86-97572f42d36c.png)
+
+Frontend prototype for a platform as a service built with Angular.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
 
 ## Development server
