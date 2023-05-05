@@ -1,0 +1,779 @@
+/*
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$platform-primary: mat.define-palette(mat.$indigo-palette);
+$platform-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$platform-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$platform-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $platform-primary,
+      accent: $platform-accent,
+      warn: $platform-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($platform-theme);
+*/
+
+/* You can add global styles to this file, and also import other style files */
+
+/*
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+*/
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "sass:map";
+
+@use "@angular/material" as mat;
+
+$enable-negative-margins: true;
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/helpers";
+@import "bootstrap/scss/utilities/api";
+
+@import "ag-grid-community/styles/ag-grid.css";
+@import "ag-grid-community/styles/ag-theme-alpine.css";
+
+@import "ag-theme-platform.scss";
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+@include mat.strong-focus-indicators(
+  (
+    border-width: 0.125em,
+    border-radius: 0.25em,
+  )
+);
+
+// Plus imports for other components in your app.
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$platform-primary: mat.define-palette(mat.$indigo-palette);
+$platform-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$platform-warn: mat.define-palette(mat.$red-palette);
+
+$platform-primary: mat.define-palette(mat.$indigo-palette, 800, 700, 900);
+$platform-accent: mat.define-palette(mat.$blue-grey-palette, 800, 700, 900);
+$platform-warn: mat.define-palette(mat.$pink-palette, 800, 700, 900);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+
+$platform-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $platform-primary,
+      accent: $platform-accent,
+      warn: $platform-warn,
+    ),
+    typography:
+      mat.define-typography-config(
+        /*headline-1: (
+          font-size: 96px,
+          line-height: 96px,
+          font-weight: 300,
+          font-family: Roboto,
+          sans-serif,
+          letter-spacing: -0.015625em,
+        ),
+        headline-2: (
+          font-size: 60px,
+          line-height: 60px,
+          font-weight: 300,
+          font-family: Roboto,
+          sans-serif,
+          letter-spacing: -0.0083333333em,
+        ),
+        headline-3: (
+          font-size: 48px,
+          line-height: 50px,
+          font-weight: 400,
+          font-family: Roboto,
+          sans-serif,
+          letter-spacing: normal,
+        ),
+        headline-4: (
+          font-size: 34px,
+          line-height: 40px,
+          font-weight: 400,
+          font-family: Roboto,
+          sans-serif,
+          letter-spacing: 0.0073529412em,
+        ),
+        headline-5: (
+          font-size: 24px,
+          line-height: 32px,
+          font-weight: 400,
+          font-family: Roboto,
+          sans-serif,
+          letter-spacing: normal,
+        ),
+        headline-6: (
+          font-size: 20px,
+          line-height: 32px,
+          font-weight: 500,
+          font-family: Roboto,
+          sans-serif,
+          letter-spacing: 0.0125em,
+        ),
+        subtitle-1: (
+          font-size: 16px,
+          line-height: 28px,
+          font-weight: 400,
+          font-family: Roboto,
+          sans-serif,
+          letter-spacing: 0.009375em,
+        ),
+        subtitle-2: (
+          font-size: 14px,
+          line-height: 22px,
+          font-weight: 500,
+          font-family: Roboto,
+          sans-serif,
+          letter-spacing: 0.0071428571em,
+        ),
+        body-1: (
+          font-size: 16px,
+          line-height: 24px,
+          font-weight: 400,
+          font-family: Roboto,
+          sans-serif,
+          letter-spacing: 0.03125em,
+        ),
+        body-2: (
+          font-size: 14px,
+          line-height: 20px,
+          font-weight: 400,
+          font-family: Roboto,
+          sans-serif,
+          letter-spacing: 0.0178571429em,
+        ),
+        caption: (
+          font-size: 12px,
+          line-height: 20px,
+          font-weight: 400,
+          font-family: Roboto,
+          sans-serif,
+          letter-spacing: 0.0333333333em,
+        ),
+        button: (
+          font-size: 14px,
+          line-height: 36px,
+          font-weight: 500,
+          font-family: Roboto,
+          sans-serif,
+          letter-spacing: 0.0892857143em,
+        ),
+        $overline: (
+          font-size: 12px,
+          line-height: 32px,
+          font-weight: 500,
+          font-family: Roboto,
+          sans-serif,
+          letter-spacing: 0.1666666667em,
+        ),*/
+          /* 
+        */
+          /*
+        $font-family: 'Inter, Roboto, "Helvetica Neue", sans-serif',
+        $headline-1:
+          mat.define-typography-level(4em, 112px, 300, $letter-spacing: -0.05em),
+        $headline-2:
+          mat.define-typography-level(3em, 56px, 400, $letter-spacing: -0.02em),
+        $headline-3:
+          mat.define-typography-level(
+            2.5em,
+            48px,
+            400,
+            $letter-spacing: -0.005em
+          ),
+        $headline-4: mat.define-typography-level(2em, 40px, 400),
+        $headline-5: mat.define-typography-level(1.75em, 32px, 500),
+        $headline-6: mat.define-typography-level(1.5em, 32px, 500),
+        $subtitle-1: mat.define-typography-level(1.25em, 28px, 500),
+        $subtitle-2: mat.define-typography-level(1.05em, 24px, 500),
+        $body-1: mat.define-typography-level(1em, 20px, 400),
+        $body-2: mat.define-typography-level(1em, 24px, 500),
+        $caption: mat.define-typography-level(0.875em, 20px, 400),
+        $button: mat.define-typography-level(1em, 14px, 500),
+        // Line-height must be unit-less fraction of the font-size.
+        $overline: mat.define-typography-level(inherit, 1.125, 400),*/
+          $button: mat.define-typography-level(16px, 16px, 500),
+        /*$overline: mat.define-typography-level(12px, 32px, 500),*/
+          $font-family: "Inter, sans-serif"
+      ),
+    density: 0,
+  )
+);
+
+$platform-color: map.get($platform-theme, color);
+
+$platform-color: map.merge(
+  $platform-color,
+  (
+    foreground: (
+      base: map.get($platform-primary, 900),
+      divider: rgba(mat.get-color-from-palette($platform-primary, darker), 0.12),
+      dividers:
+        rgba(mat.get-color-from-palette($platform-primary, darker), 0.12),
+      disabled: rgba(black, 0.38),
+      disabled-button: rgba(black, 0.26),
+      disabled-text: rgba(black, 0.38),
+      elevation: black,
+      hint-text: rgba(black, 0.38),
+      secondary-text: rgba(black, 0.54),
+      icon: rgba(black, 0.54),
+      icons: rgba(black, 0.54),
+      text: rgba(black, 0.87),
+      slider-min: rgba(black, 0.87),
+      slider-off: rgba(black, 0.26),
+      slider-off-active: rgba(black, 0.38),
+    ),
+    background: (
+      status-bar: #e0e0e0,
+      app-bar: #fff,
+      background: #fff,
+      hover: rgba(#e8eaf6, 0.5),
+      card: white,
+      dialog: white,
+      disabled-button: rgba(black, 0.12),
+      raised-button: white,
+      focused-button: rgba(black, 0.12),
+      selected-button: #e0e0e0,
+      selected-disabled-button: #bdbdbd,
+      disabled-button-toggle: #eeeeee,
+      unselected-chip: #e0e0e0,
+      disabled-list-option: #eeeeee,
+      tooltip: #000,
+    ),
+  )
+);
+
+$platform-theme: map.set($platform-theme, color, $platform-color);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($platform-theme);
+@include mat.strong-focus-indicators-theme(
+  mat.get-color-from-palette($platform-primary)
+);
+
+/* You can add global styles to this file, and also import other style files */
+
+$color-config: mat.get-color-config($platform-theme);
+$primary-palette: map.get($color-config, "primary");
+$accent-palette: map.get($color-config, "accent");
+$warn-palette: map.get($color-config, "warn");
+$foreground-palette: map.get($color-config, "foreground");
+$background-palette: map.get($color-config, "background");
+$is-dark-theme: map.get($color-config, "is-dark");
+
+// MAT FORM FIELD LIGHT BLUE?
+
+.mat-ripple-element {
+  background-color: mat.get-color-from-palette($primary-palette, 0.1);
+}
+
+.mat-mdc-icon-button.mdc-icon-button {
+  --mat-mdc-button-ripple-color: #{mat.get-color-from-palette(
+      $primary-palette,
+      0.1
+    )};
+  border-radius: 4px;
+  display: inline-flex;
+
+  .mat-mdc-button-persistent-ripple {
+    border-radius: 4px;
+  }
+}
+
+.mat-mdc-list-item-interactive {
+  border-radius: 4px;
+
+  &.mdc-list-item--activated {
+    background: mat.get-color-from-palette($primary-palette, 0.08);
+  }
+
+  &::before {
+    background: mat.get-color-from-palette($primary-palette);
+  }
+}
+
+.mat-mdc-tooltip {
+  --mdc-plain-tooltip-supporting-text-size: 14px;
+  --mdc-plain-tooltip-container-color: #000;
+}
+
+mat-toolbar.mat-toolbar {
+  font-size: 1em;
+  flex-shrink: 0;
+}
+
+.mat-toolbar.mat-primary {
+  .mat-mdc-icon-button .mat-mdc-focus-indicator::before {
+    --mat-mdc-focus-indicator-border-color: #fff;
+  }
+
+  .mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content {
+    right: -4px;
+    top: -4px;
+    background-color: #fff;
+    color: #000;
+  }
+
+  .mat-icon-button.mat-focus-indicator::before {
+    border-color: mat.get-color-from-palette($primary-palette, 100);
+  }
+}
+
+// TinyMCE
+
+.tox-tinymce {
+  border-width: 0 !important;
+}
+
+////////////////////////// OLD ///////////////////////////
+
+/*
+mat-toolbar.mat-toolbar {
+  font-size: 1em;
+  flex-shrink: 0;
+  height: 4em;
+  border-bottom: 0.0625em solid
+    mat.get-color-from-palette($foreground-palette, divider);
+}
+
+.mat-tooltip {
+  font-size: 0.875em;
+}
+
+.mat-toolbar.mat-primary {
+  .mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content {
+    right: -4px;
+    top: -4px;
+    background-color: #fff;
+    color: #000;
+  }
+
+  .mat-icon-button.mat-focus-indicator::before {
+    border-color: mat.get-color-from-palette($primary-palette, 100);
+  }
+}
+
+.alert {
+  font-size: 0.9em;
+
+  h4 {
+    font-size: 1.1em;
+  }
+}
+
+.alert-warn {
+  background-color: rgb(250, 230, 240);
+  color: rgb(120, 10, 20);
+  border-radius: 0.5em;
+
+  mat-icon.alert-icon {
+    background: rgb(250, 160, 170);
+    color: #fff;
+    border-radius: 50%;
+    width: 1.25em;
+    height: 1.25em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    padding-top: 0.1em;
+    margin-top: 0.15em;
+  }
+}
+
+.alert-success {
+  background-color: rgb(230, 250, 240);
+  color: rgb(10, 120, 20);
+  border-radius: 0.5em;
+
+  mat-icon.alert-icon {
+    background: rgb(130, 230, 150);
+    color: #fff;
+    border-radius: 50%;
+    width: 1.25em;
+    height: 1.25em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    padding-top: 0.1em;
+  }
+}
+
+.material-symbols-rounded {
+  font-variation-settings: "FILL" 0, "wght" 600, "GRAD" 0, "opsz" 48;
+}
+
+.platform-material {
+  .mat-h5,
+  &.mat-typography .mat-h5,
+  &.mat-typography h5 {
+    font-weight: 500;
+  }
+
+  .mat-h6,
+  &.mat-typography .mat-h6,
+  &.mat-typography h6 {
+    font-weight: 500;
+  }
+
+  .mat-toolbar:not([color]) {
+    background-color: transparent;
+  }
+
+  mat-toolbar.mat-toolbar {
+    font-size: 1em;
+    flex-shrink: 0;
+    height: 4em;
+    border-bottom: 0.0625em solid
+      mat.get-color-from-palette($foreground-palette, divider);
+  }
+
+  .mat-toolbar,
+  .mat-toolbar h1,
+  .mat-toolbar h2,
+  .mat-toolbar h3,
+  .mat-toolbar h4,
+  .mat-toolbar h5,
+  .mat-toolbar h6 {
+    font-size: 1.375em;
+  }
+
+  .mat-toolbar .mat-form-field {
+    margin-top: 1.4em;
+  }
+
+  .mat-toolbar.mat-primary {
+    .mat-icon-button.mat-badge-medium.mat-badge-overlap.mat-badge-after
+      .mat-badge-content {
+      right: -8px;
+      top: -8px;
+      background-color: #fff;
+      color: #000;
+    }
+
+    .mat-icon-button.mat-focus-indicator::before {
+      border-color: mat.get-color-from-palette($primary-palette, 100);
+    }
+  }
+
+  .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    line-height: 2.1;
+    font-weight: 500;
+  }
+
+  .mat-button,
+  .mat-icon-button,
+  .mat-stroked-button,
+  .mat-flat-button {
+    line-height: 2.125;
+  }
+
+  .mat-icon-button {
+    opacity: 0.9;
+    transition: 0.1s ease;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  .mat-icon-button,
+  .mat-icon-button .mat-button-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    .mat-icon {
+      font-size: 1.5em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .mat-icon {
+    width: 1em;
+    height: 1em;
+  }
+
+  .mat-focus-indicator {
+    &.mat-icon-button::before {
+      border-radius: 50%;
+    }
+  }
+
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: mat.get-color-from-palette(
+      $foreground-palette,
+      base,
+      0.06
+    );
+  }
+
+  .mat-tab-body-wrapper {
+    flex-grow: 1;
+  }
+
+  .mat-list-base .mat-list-item {
+    font-size: 1rem;
+  }
+
+  mat-nav-list.mat-list-base .mat-list-item .mat-list-text > *,
+  mat-nav-list.mat-list-base .mat-list-option .mat-list-text > * {
+    font-weight: bold;
+  }
+
+  .mat-list-base {
+    .mat-list-item,
+    .mat-list-item.mat-focus-indicator::before,
+    .mat-ripple {
+      border-radius: 100em;
+    }
+
+    .mat-list-item.active {
+      color: #1a237e;
+      background-color: rgba(#e8eaf6, 0.5);
+    }
+  }
+
+  .mat-list-base .mat-list-item .mat-list-avatar,
+  .mat-list-base .mat-list-option .mat-list-avatar {
+    border: 0.0625em solid
+      mat.get-color-from-palette($foreground-palette, divider);
+  }
+
+  .mat-tooltip {
+    font-size: 0.875em;
+  }
+
+  mat-card.mat-card {
+    border-radius: 0.5em;
+    border: 0.0625em solid
+      mat.get-color-from-palette($foreground-palette, divider);
+
+    &:not([class*="mat-elevation-z"]) {
+      box-shadow: none;
+    }
+
+    .mat-card-title {
+      font-size: 20px;
+    }
+  }
+
+  .mat-form-field:not(.mat-form-field-appearance-legacy)
+    .mat-form-field-prefix
+    .mat-icon,
+  .mat-form-field:not(.mat-form-field-appearance-legacy)
+    .mat-form-field-suffix
+    .mat-icon {
+    display: inline-flex;
+  }
+
+  .mat-option {
+    font-size: 1rem;
+  }
+
+  .mat-autocomplete-panel:not([class*="mat-elevation-z"]) {
+    box-shadow: 0 0 0.8em
+      mat.get-color-from-palette($foreground-palette, base, 0.25);
+  }
+
+  .mat-snack-bar-container {
+    background-color: mat.get-color-from-palette(
+      $background-palette,
+      background
+    );
+    color: #000;
+    //box-shadow: 0 0 1em mat.get-color-from-palette($foreground-palette, base, .3);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
+
+  .mat-drawer {
+    //background-color: #fafafa;
+  }
+
+  .mat-elevation-z1 {
+    box-shadow: 0 0 0.2em
+      mat.get-color-from-palette($foreground-palette, base, 0.1);
+  }
+  .mat-elevation-z2 {
+    box-shadow: 0 0 0.4em
+      mat.get-color-from-palette($foreground-palette, base, 0.15);
+  }
+  .mat-elevation-z3 {
+    box-shadow: 0 0 0.6em
+      mat.get-color-from-palette($foreground-palette, base, 0.2);
+  }
+  .mat-elevation-z4 {
+    box-shadow: 0 0 0.8em
+      mat.get-color-from-palette($foreground-palette, base, 0.25);
+  }
+  .mat-elevation-z5 {
+    box-shadow: 0 0 1em
+      mat.get-color-from-palette($foreground-palette, base, 0.3);
+  }
+}
+
+a {
+  color: mat.get-color-from-palette($primary-palette);
+  font-weight: 500;
+
+  &:hover {
+    color: mat.get-color-from-palette($primary-palette, darker);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.2em;
+  height: 0.2em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: mat.get-color-from-palette($foreground-palette, divider);
+  border-radius: 10em;
+}
+
+.command-palette-container2 {
+  width: 100%;
+  max-width: 35em;
+  padding: 0.5em;
+
+  .command-palette-field {
+    background-color: mat.get-color-from-palette($primary-palette, 50, 0.9);
+    border-radius: 2em;
+    border-color: mat.get-color-from-palette($primary-palette, 900);
+    color: #fff;
+    cursor: pointer;
+
+    .mat-icon {
+      color: mat.get-color-from-palette($primary-palette, 900);
+    }
+
+    input[type="search"] {
+      color: #000;
+      cursor: inherit;
+
+      &::placeholder {
+        color: mat.get-color-from-palette($primary-palette, 900);
+      }
+    }
+  }
+}
+*/
+.command-palette-container {
+  position: fixed;
+  top: 0;
+  left: calc(50% + 32px);
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 100%;
+  max-width: 35em;
+  background: #fff;
+  border-radius: 1.5em;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.12);
+  padding: 0.75em;
+  display: block;
+}
+
+.command-palette-field {
+  background-color: mat.get-color-from-palette($primary-palette, 0.08);
+  border-radius: 2em;
+  border: 0.125em solid #000;
+  height: 2.75em;
+  display: flex;
+  align-items: center;
+  color: #000;
+
+  .mat-icon {
+    color: mat.get-color-from-palette($primary-palette);
+  }
+
+  input[type="search"] {
+    background-color: transparent;
+    border: 0;
+    height: 100%;
+    font-weight: 500;
+    outline: 0;
+    flex-grow: 1;
+  }
+
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+}
+
+.search {
+  flex-grow: 1;
+  max-width: 30em;
+
+  &.mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: mat.get-color-from-palette(
+      $foreground-palette,
+      base,
+      0.7
+    );
+  }
+}
+
+.search-autocomplete {
+  margin-top: 0.14em;
+}
