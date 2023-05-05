@@ -106,7 +106,7 @@ import { MaterialModule } from './material.module';
       <mat-sidenav mode="side" opened [class.open]="isMenuOpen">
         <div class="nav-container m-2">
           <mat-nav-list class="pt-0">
-            <a mat-list-item routerLink="/" [activated]="true">
+            <a mat-list-item routerLink="/">
               <mat-icon
                 matListItemIcon
                 matTooltip="Home"
@@ -173,7 +173,7 @@ import { MaterialModule } from './material.module';
               <span matListItemTitle>Tasks</span>
             </a>
 
-            <a mat-list-item routerLink="/chat">
+            <a mat-list-item routerLink="/chat" [activated]="true">
               <mat-icon
                 matListItemIcon
                 matTooltip="Chat"
